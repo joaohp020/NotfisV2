@@ -1,0 +1,19 @@
+﻿@model Web.Models.Arquivos.ArquivoModel
+
+@{
+    ViewBag.Title = "Upload NOTFIS";
+}
+
+<form asp-controller="Arquivos" asp-action="SalvarArquivo" method="post" enctype="multipart/form-data">
+    <dl>
+        <dt>
+            <label asp-for="Arquivos"></label>
+        </dt>
+        <dd>
+            <input asp-for="Arquivos" type="file">
+            <span asp-validation-for="Arquivos"></span>
+        </dd>
+    </dl>
+    <input class="btn" type="submit" value="SalvarArquivo" />
+</form>
+
