@@ -12,15 +12,19 @@ using Infraestrutura.Entidades;
 using Infraestrutura.Interfaces;
 using Web.Models.Arquivos;
 using Servicos.Interfaces;
+using Infraestrutura.Repositorios;
 
 namespace Web.Controllers
 {
     public class ArquivosController : Controller
     {
+        private readonly IOperadorArquivo _operadorArquivo;
 
-        public ArquivosController(IOperadorArquivo repositorioNotaFisca)
+        public ArquivosController(IOperadorArquivo operadorArquivo)
         {
-            //_repositorioNotaFiscal = repositorioNotaFiscal;
+            _operadorArquivo = operadorArquivo;
+
+
         }
 
         // GET: ArquivosController
@@ -48,15 +52,6 @@ namespace Web.Controllers
         {
             try
             {
-                //var intercambioExistente = _repositorioIntercambio.ObterIntercambioPorNomeArquivo("", collection.Files);
-
-
-                //if (intercambioExistente != null)
-                //{
-                //    throw new Exception($"Esse arquivo já existe");
-                //}
-
-                //Mover para classe auxiliar
                 foreach (var arquivo in arquivoModel.Arquivos)
                 {
                     if (arquivo.Length > 0)
@@ -64,12 +59,13 @@ namespace Web.Controllers
                         using (var ms = new MemoryStream())
                         {
                             arquivo.CopyTo(ms);
-                            
-                            var texto = Encoding.UTF8.GetString(ms.ToArray());
 
-                            return Ok(texto);
+                            var conteudo = Encoding.UTF8.GetString(ms.ToArray());
+                            await _operadorArquivo.AdicionarAsync(arquivo.Name, conteudo);
+
+                            return Ok(conteudo);
                         }
-                    }                    
+                    }
                 }
 
                 return Ok();

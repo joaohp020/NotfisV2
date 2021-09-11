@@ -4,16 +4,51 @@
     ViewBag.Title = "Upload NOTFIS";
 }
 
-<form asp-controller="Arquivos" asp-action="SalvarArquivo" method="post" enctype="multipart/form-data">
-    <dl>
-        <dt>
-            <label asp-for="Arquivos"></label>
-        </dt>
-        <dd>
-            <input asp-for="Arquivos" type="file">
-            <span asp-validation-for="Arquivos"></span>
-        </dd>
-    </dl>
-    <input class="btn" type="submit" value="SalvarArquivo" />
-</form>
+<div class="col-xs-12 input-group">
+    <form asp-controller="Arquivos" asp-action="SalvarArquivo" method="post" enctype="multipart/form-data">
+        <dl>
+            <dt>
+                <label asp-for="Arquivos"></label>
+            </dt>
+            <dd>
+                <input asp-for="Arquivos" type="file">
+                <span asp-validation-for="Arquivos"></span>
+            </dd>
+        </dl>
+        <input class="btn" type="submit" value="SalvarArquivo" />
+    </form>
+</div>
 
+
+@*<script>
+    $(document).ready(function () {
+        $('#cmbEmpresa').select2();
+        $('#divInputArquivo').hide();
+    });
+
+    $('#cmbEmpresa').change(function () {
+        if (this.value == "") {
+            $('#divInputArquivo').slideUp('slow');
+        }
+        else {
+            if ($('#IdEmpresa').val() != "") {
+                location.reload();
+            }
+            else {
+                var url = "@Url.Action("SalvarArquivos", "Arquivos")?" + this.value;
+
+                //Caso queira mudar as mensagens do componete, vá no arquivo fileinput.js na linha 4253
+
+                $('#inputArquivo').fileinput({
+                    allowedFileExtensions: ["txt", "TXT", "EDI", "C33", "xml"],
+                    uploadUrl: url,
+                    maxFilePreviewSize: 99999
+                });
+            }
+
+            $('#divInputArquivo').slideDown('slow');
+        }
+        $('#IdEmpresa').val(this.value);
+    });
+
+</script>*@

@@ -1,3 +1,4 @@
+using Core.Auxiliar;
 using Infraestrutura;
 using Infraestrutura.Entidades;
 using Infraestrutura.Interfaces;
@@ -8,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Servicos.Interfaces;
+using Servicos.Operadores;
 using System;
 using System.IO;
 
@@ -30,8 +33,11 @@ namespace Web
             var caminhoSqLite = $"DataSource={Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}{Path.DirectorySeparatorChar}notfis.db";
             services.AddDbContext<ContextoNotfis>(options => options.UseSqlite(caminhoSqLite));
             
-            //services.AddScoped<IRepositorioIntercambio, Intercambio>();
+            services.AddScoped<IRepositorioIntercambio, RepositorioIntercambio>();
             services.AddScoped<IRepositorioNotaFiscal, RepositorioNotaFiscal>();
+            services.AddScoped<IOperadorArquivo, OperadorArquivo>();
+            services.AddScoped<IRepositorioCEP, RepositorioCEP>();
+            services.AddScoped<NOTFIS>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

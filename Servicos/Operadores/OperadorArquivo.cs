@@ -11,25 +11,20 @@ namespace Servicos.Operadores
 {
     public class OperadorArquivo : IOperadorArquivo
     {
-        private readonly IRepositorioNotaFiscal _repositorioNotaFiscal;
+        private readonly IRepositorioIntercambio _repositorioIntercambio;
+        private readonly NOTFIS _notfis;
 
-        public OperadorArquivo(IRepositorioNotaFiscal repositorioNotaFiscal)
+        public OperadorArquivo(IRepositorioIntercambio repositorioIntercambio, NOTFIS notfis)
         {
-            _repositorioNotaFiscal = repositorioNotaFiscal;
+            _repositorioIntercambio = repositorioIntercambio;
+            _notfis = notfis;
         }
 
         public async Task AdicionarAsync(string nomeArquivo, string arquivo)
         {
-            //TODO: Ler arquivo
-            //TODO: Ler campo a ca,po e atribuir os valores na nota fiscal
+            var intercambio = await _notfis.ConverterParaIntercambioAsync(arquivo);
 
-            var intercambio = new Intercambio();
-            intercambio.ArquivoNome = nomeArquivo;
-            //intercambio.Destinatario = AuxiliarArquivos.LerCampo(arquivo, 0, 10);
-            var notaFiscal = new NotaFiscal();
-            //notaFiscal.ChaveNFE = AuxiliarArquivos.LerCampo();
-
-            await _repositorioNotaFiscal.AdicionarAsync(notaFiscal);
+            await _repositorioIntercambio.AdicionarAsync(intercambio);
         }
     }
 }
