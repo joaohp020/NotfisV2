@@ -18,6 +18,12 @@ namespace Infraestrutura
 
         public DbSet<NotaFiscal> NotasFiscais { get; set; }
 
+        public DbSet<NotaFiscalVolume> NotasFiscaisVolumes { get; set; }
+
+        public DbSet<NotaFiscalItem> NotasFiscaisItens { get; set; }
+
+        public DbSet<NotaFiscalParticipante> NotaFiscalParticipantes { get; set; }
+
         public DbSet<Intercambio> Intercambios { get; set; }
 
         public DbSet<CEP> CEP { get; set; }

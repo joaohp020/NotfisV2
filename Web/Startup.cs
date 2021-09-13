@@ -35,6 +35,8 @@ namespace Web
             
             services.AddScoped<IRepositorioIntercambio, RepositorioIntercambio>();
             services.AddScoped<IRepositorioNotaFiscal, RepositorioNotaFiscal>();
+            services.AddScoped<IRepositorioNotaFiscalVolume, RepositorioNotaFiscalVolume>();
+            services.AddScoped<IRepositorioNotaFiscalParticipante, RepositorioNotaFiscalParticipante>();
             services.AddScoped<IOperadorArquivo, OperadorArquivo>();
             services.AddScoped<IRepositorioCEP, RepositorioCEP>();
             services.AddScoped<NOTFIS>();

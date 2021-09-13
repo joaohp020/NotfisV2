@@ -22,9 +22,16 @@ namespace Servicos.Operadores
 
         public async Task AdicionarAsync(string nomeArquivo, string arquivo)
         {
-            var intercambio = await _notfis.ConverterParaIntercambioAsync(arquivo);
+            try
+            {
+                var intercambio = await _notfis.ConverterParaIntercambioAsync(arquivo);
 
-            await _repositorioIntercambio.AdicionarAsync(intercambio);
+                await _repositorioIntercambio.AdicionarAsync(intercambio);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
