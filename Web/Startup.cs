@@ -33,13 +33,10 @@ namespace Web
             var caminhoSqLite = $"DataSource={Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}{Path.DirectorySeparatorChar}notfis.db";
             services.AddDbContext<ContextoNotfis>(options => options.UseSqlite(caminhoSqLite));
             
-            services.AddScoped<IRepositorioIntercambio, RepositorioIntercambio>();
             services.AddScoped<IRepositorioNotaFiscal, RepositorioNotaFiscal>();
-            services.AddScoped<IRepositorioNotaFiscalVolume, RepositorioNotaFiscalVolume>();
             services.AddScoped<IRepositorioNotaFiscalParticipante, RepositorioNotaFiscalParticipante>();
             services.AddScoped<IOperadorArquivo, OperadorArquivo>();
-            services.AddScoped<IRepositorioCEP, RepositorioCEP>();
-            services.AddScoped<NOTFIS>();
+            services.AddScoped<ConversorNOTFIS>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

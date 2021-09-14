@@ -4,6 +4,6 @@ namespace Servicos.Interfaces
 {
     public interface IOperadorArquivo
     {
-        Task AdicionarAsync(string nomeArquivo, string arquivo);
+        Task AdicionarAsync(string arquivo);
     }
 }

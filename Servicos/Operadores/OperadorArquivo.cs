@@ -1,37 +1,27 @@
 ﻿using Core.Auxiliar;
-using Infraestrutura.Entidades;
 using Infraestrutura.Interfaces;
 using Servicos.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Servicos.Operadores
 {
     public class OperadorArquivo : IOperadorArquivo
     {
-        private readonly IRepositorioIntercambio _repositorioIntercambio;
-        private readonly NOTFIS _notfis;
+        private readonly IRepositorioNotaFiscal _repositorioNotaFiscal;
+        private readonly ConversorNOTFIS _notfis;
 
-        public OperadorArquivo(IRepositorioIntercambio repositorioIntercambio, NOTFIS notfis)
+        public OperadorArquivo(IRepositorioNotaFiscal repositorioNotaFiscal, ConversorNOTFIS notfis)
         {
-            _repositorioIntercambio = repositorioIntercambio;
+            _repositorioNotaFiscal = repositorioNotaFiscal;
             _notfis = notfis;
         }
 
-        public async Task AdicionarAsync(string nomeArquivo, string arquivo)
+        public async Task AdicionarAsync(string arquivo)
         {
-            try
-            {
-                var intercambio = await _notfis.ConverterParaIntercambioAsync(arquivo);
+            var notasfiscais = _notfis.ConverterParaNotasFiscais(arquivo);
 
-                await _repositorioIntercambio.AdicionarAsync(intercambio);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            foreach (var notafiscal in notasfiscais)
+                await _repositorioNotaFiscal.AdicionarAsync(notafiscal);
         }
     }
 }

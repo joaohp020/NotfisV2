@@ -24,7 +24,6 @@ namespace Web.Controllers
         {
             _operadorArquivo = operadorArquivo;
 
-
         }
 
         // GET: ArquivosController
@@ -61,7 +60,7 @@ namespace Web.Controllers
                             arquivo.CopyTo(ms);
 
                             var conteudo = Encoding.UTF8.GetString(ms.ToArray());
-                            await _operadorArquivo.AdicionarAsync(arquivo.Name, conteudo);
+                            await _operadorArquivo.AdicionarAsync(conteudo);
 
                             return Ok(conteudo);
                         }
@@ -70,7 +69,7 @@ namespace Web.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

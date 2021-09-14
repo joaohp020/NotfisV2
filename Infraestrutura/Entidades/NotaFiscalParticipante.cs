@@ -1,40 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Text;
 
 namespace Infraestrutura.Entidades
 {
     public class NotaFiscalParticipante
     {
-        public Int64? ID { get; set; }
-        public Int64? ID_NotaFiscal { get; set; }
-        public String Tipo { get; set; }
-        public String CNPJ { get; set; }
-        public String IE { get; set; }
-        public String ContaCorrente { get; set; }
-        public String Razao { get; set; }
-        public String CodigoAzul { get; set; }
-        public String Email { get; set; }
-        public String Telefone { get; set; }
-        public String Logradouro { get; set; }
-        public String Numero { get; set; }
-        public String Bairro { get; set; }
-        public String CEP { get; set; }
-        public String Cidade { get; set; }
-        public String Estado { get; set; }
-        public String IBGE { get; set; }
-        public String Complemento { get; set; }
-        public String Armazem { get; set; }
-        public String BaseOperacao { get; set; }
-        public String CodigoFrete { get; set; }
-        public String CEPFrete { get; set; }
-        public String TipoRetira { get; set; }
-        public String TipoIdentificacaoDestinatario { get; set; }
-        public DateTime? Inclusao { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public int ID_NotaFiscal { get; set; }
+        public string Tipo { get; set; }
+        public string CNPJ { get; set; }
+        public string IE { get; set; }
+        public string ContaCorrente { get; set; }
+        public string Razao { get; set; }
+        public string CodigoAzul { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
+        public string Logradouro { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public string CEP { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+        public string IBGE { get; set; }
+        public string Complemento { get; set; }
+        public string Armazem { get; set; }
+        public string BaseOperacao { get; set; }
+        public string CodigoFrete { get; set; }
+        public string CEPFrete { get; set; }
+        public string TipoRetira { get; set; }
+        public string TipoIdentificacaoDestinatario { get; set; }
+        public DateTime Inclusao { get; set; }
         public DateTime? Alteracao { get; set; }
-        public Boolean? Ativo { get; set; }
+        public bool Ativo { get; set; }
 
         public virtual NotaFiscal NotaFiscal { get; set; }
 
@@ -46,38 +45,38 @@ namespace Infraestrutura.Entidades
     {
         public NotaFiscalParticipanteMap()
         {
-            this.ToTable("NotaFiscalParticipante");
-            this.HasKey(k => k.ID);
-
-            this.Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
-            this.Property(p => p.ID_NotaFiscal).IsRequired();
-            this.Property(p => p.Tipo).IsRequired();
-            this.Property(p => p.CNPJ).IsRequired();
-            this.Property(p => p.IE);
-            this.Property(p => p.ContaCorrente);
-            this.Property(p => p.Razao).IsRequired();
-            this.Property(p => p.CodigoAzul);
-            this.Property(p => p.Email);
-            this.Property(p => p.Telefone);
-            this.Property(p => p.Logradouro);
-            this.Property(p => p.Bairro);
-            this.Property(p => p.CEP).IsRequired();
-            this.Property(p => p.Cidade);
-            this.Property(p => p.Estado);
-            this.Property(p => p.IBGE).IsRequired();
-            this.Property(p => p.Complemento);
-            this.Property(p => p.Armazem);
-            this.Property(p => p.BaseOperacao);
-            this.Property(p => p.CodigoFrete);
-            this.Property(p => p.CEPFrete);
-            this.Property(p => p.TipoRetira);
-            this.Property(p => p.TipoIdentificacaoDestinatario);
-            this.Property(p => p.Inclusao).IsRequired();
-            this.Property(p => p.Alteracao);
-            this.Property(p => p.Ativo).IsRequired();
+            ToTable("NotaFiscalParticipante");
+            HasKey(k => k.ID);
+            
+            Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
+            Property(p => p.ID_NotaFiscal).IsRequired();
+            Property(p => p.Tipo).IsRequired();
+            Property(p => p.CNPJ).IsRequired();
+            Property(p => p.IE);
+            Property(p => p.ContaCorrente);
+            Property(p => p.Razao).IsRequired();
+            Property(p => p.CodigoAzul);
+            Property(p => p.Email);
+            Property(p => p.Telefone);
+            Property(p => p.Logradouro);
+            Property(p => p.Bairro);
+            Property(p => p.CEP).IsRequired();
+            Property(p => p.Cidade);
+            Property(p => p.Estado);
+            Property(p => p.IBGE).IsRequired();
+            Property(p => p.Complemento);
+            Property(p => p.Armazem);
+            Property(p => p.BaseOperacao);
+            Property(p => p.CodigoFrete);
+            Property(p => p.CEPFrete);
+            Property(p => p.TipoRetira);
+            Property(p => p.TipoIdentificacaoDestinatario);
+            Property(p => p.Inclusao).IsRequired();
+            Property(p => p.Alteracao);
+            Property(p => p.Ativo).IsRequired();
 
             //Nota Fiscal
-            this.HasRequired(p => p.NotaFiscal)
+            HasRequired(p => p.NotaFiscal)
                 .WithMany()
                 .HasForeignKey(p => p.ID_NotaFiscal);
         }
