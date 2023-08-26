@@ -1,6 +1,7 @@
 # NotfisV2
-Projeto que faz leitura de arquivos TXT ou XML, e converte em dados de Nota Fiscal
+Projeto que realiza a leitura de arquivos TXT ou XML, e converte em dados de Nota Fiscal
 
 ## Tecnologias
 
-
+- ASP .NET MVC
+- SQLite
